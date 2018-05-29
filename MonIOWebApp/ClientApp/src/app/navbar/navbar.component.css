@@ -6,3 +6,12 @@
   width: 200px;
   box-shadow: 3px 0 6px rgba(0,0,0,.24);
 }
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.navbar-button {
+  margin-left: 5px;
+  margin-right: 5px;
+}

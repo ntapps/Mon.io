@@ -16,4 +16,8 @@ export class NavbarComponent {
   onLoginClick(){
     this._router.navigate(['login']);
   }
+
+  onSignUpClick(){
+    
+  }
 }
