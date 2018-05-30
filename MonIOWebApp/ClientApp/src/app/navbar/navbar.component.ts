@@ -18,6 +18,6 @@ export class NavbarComponent {
   }
 
   onSignUpClick(){
-    
+    this._router.navigate(['home']);
   }
 }
