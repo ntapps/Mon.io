@@ -11,6 +11,7 @@ export class ApiDataService {
     this.dataStore = {
       homeData: new HomeData(0,0,0)
     };
+    this._homeData = new BehaviorSubject<HomeData>(this.dataStore.homeData)
 
     //call fetches on our dataStore objects
     //(when we get an API)
