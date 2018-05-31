@@ -7,8 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-import { DataModule } from 'src/app/shared-data/data.module';
-
+import { SharedDataModule } from './shared-data/shared-data.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +23,7 @@ import { DataModule } from 'src/app/shared-data/data.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    DataModule.forRoot()
+    SharedDataModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
