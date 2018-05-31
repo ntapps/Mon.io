@@ -3,22 +3,29 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Observable } from 'rxjs';
 import { Router} from '@angular/router';
 import { AuthenticationService } from 'src/app/shared-data/authentication.service';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
   isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
+  private isLoggedIn: boolean;
   constructor(
     private breakpointObserver: BreakpointObserver, 
     private _router:Router,
     private auth:AuthenticationService
-  ) {}
+  ) {
+    
+  }
 
-  isLoggedIn(){
-    return this.auth.checkAuth();
+
+  ngOnInit(){
+    this.auth.isAuthenticated.subscribe(loggedIn =>
+      this.isLoggedIn = loggedIn
+    );
   }
 
   onLoginClick(){
