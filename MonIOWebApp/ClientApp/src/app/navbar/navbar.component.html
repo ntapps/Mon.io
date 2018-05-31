@@ -33,9 +33,9 @@
       </button>
       <span (click)="onHeaderClick()">Mon.io</span>
       <span class="toolbar-spacer"></span>
-      <button *ngIf="!isLoggedIn()" class="navbar-button" type="button" id="LoginButton" (click)="onLoginClick()" mat-icon-button>Login</button>
-      <button *ngIf="!isLoggedIn()" class="navbar-button" type="button" id="SignUpButton" (click)="onSignUpClick()" mat-icon-button>Sign Up</button>
-      <button *ngIf="isLoggedIn()" class="navbar-button" type="button" id="LogOutButton" (click)="onLogOutClick()" mat-icon-button>Log Out</button>
+      <button *ngIf="!isLoggedIn" class="navbar-button" type="button" id="LoginButton" (click)="onLoginClick()" mat-icon-button>Login</button>
+      <button *ngIf="!isLoggedIn" class="navbar-button" type="button" id="SignUpButton" (click)="onSignUpClick()" mat-icon-button>Sign Up</button>
+      <button *ngIf="isLoggedIn" class="navbar-button" type="button" id="LogOutButton" (click)="onLogOutClick()" mat-icon-button>Log Out</button>
     </mat-toolbar>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,30 +1,36 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-
-  isAuthenticated : boolean;
+  _isAuthenticated : BehaviorSubject<boolean>;
   token : string = "IhaventlookedintogoogleauthsoIdontknowwhatweneed";
   userId : number;
   constructor() { 
-    this.isAuthenticated = true;
     this.userId = 4;
+    this._isAuthenticated = new BehaviorSubject<boolean>(true);
   }
+
 
 
 
   //TEMPORARY FUNCTIONS TO MIMIC SHARED SERVICES.
   //IF THERES NO OBSERVABLES BELOW HERE WHEN YOU FIND IT, TELL ANDREW
   //HES BAD AT HIS JOB
-  checkAuth(){
-    return this.isAuthenticated;
+
+  get isAuthenticated(){
+    return this._isAuthenticated.asObservable();
   }
 
   logOut(){
-    this.isAuthenticated = false;
+    this._isAuthenticated.next(false);
+  }
+
+  logIn(){
+    this._isAuthenticated.next(true);
   }
 
   tryLogin(user:string, password:string) : string{
