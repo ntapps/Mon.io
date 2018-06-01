@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeDataService } from '../home-data.service';
+import { HomeData } from 'src/app/models/HomeData';
 
 @Component({
   selector: 'app-home-view',
@@ -8,17 +9,28 @@ import { HomeDataService } from '../home-data.service';
 })
 export class HomeViewComponent implements OnInit {
 
-  private budgetBalance;
-  private expenseBalance;
-  private savingsBalance;
+  private budgetBalance :number;
+  private expenseBalance :number;
+  private savingsBalance :number;
 
-  constructor(private homeData : HomeDataService) { 
-    this.budgetBalance = this.homeData.GetBudgets();
-    this.expenseBalance = this.homeData.GetExpenses();
-    this.savingsBalance = this.homeData.GetSavings();
+  homeDataObject : HomeData;
+  constructor(private homeDataService : HomeDataService) { 
+
+    this.budgetBalance = 0;
+    this.expenseBalance = 0;
+    this.savingsBalance = 0;
   }
 
   ngOnInit() {
+    this.homeDataService.GetBudgets().subscribe(budget => {
+      this.budgetBalance = budget;
+    });
+    this.homeDataService.GetExpenses().subscribe(expense => {
+      this.expenseBalance = expense;
+    });
+    this.homeDataService.GetSavings().subscribe(savings => {
+      this.savingsBalance = savings;
+    });
   }
 
 }
