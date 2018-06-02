@@ -1,0 +1,26 @@
+.home-card {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-width: 200px;
+    width: 75%;
+  }
+
+@media only screen and (max-width: 1800px){
+    .home-card {
+        width: 65%;
+    }
+}
+
+@media only screen and (max-width: 1260px){
+    .home-card {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 920px){
+    .home-card {
+        width: 85%;
+    }
+}
