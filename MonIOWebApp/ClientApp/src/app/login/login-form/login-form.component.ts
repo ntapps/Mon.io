@@ -1,9 +1,11 @@
 import {Component, OnInit, ElementRef, AfterViewInit} from '@angular/core';
+import {AuthenticationService} from '../../shared-data/authentication.service';
 declare const gapi: any;
 
 @Component({
   selector: 'google-signin',
-  template: '<button id="googleBtn">Google Sign-In</button>'
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.css']
 })
 export class GoogleSigninComponent implements AfterViewInit {
 
@@ -36,15 +38,15 @@ export class GoogleSigninComponent implements AfterViewInit {
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
-        //YOUR CODE HERE
 
+        that.authService.logIn();
 
       }, function (error) {
         console.log(JSON.stringify(error, undefined, 2));
       });
   }
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, private authService: AuthenticationService) {
     console.log('ElementRef: ', this.element);
   }
 
