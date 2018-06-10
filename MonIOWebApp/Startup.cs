@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using mon_io_app.DataLayer;
+using MySql.Data.EntityFrameworkCore.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace mon_io_app
 {
@@ -19,6 +22,10 @@ namespace mon_io_app
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSingleton<IConfiguration>(Configuration);
+
+            services.AddDbContext<MonioContext>(options => options.UseMySQL(Configuration.GetSection("ConnectionStrings").GetSection("MonioDB").Value));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -61,6 +68,8 @@ namespace mon_io_app
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            
         }
     }
 }
