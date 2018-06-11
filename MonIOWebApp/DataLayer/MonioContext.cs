@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.EntityFrameworkCore.Extensions;
+using Pomelo.EntityFrameworkCore.MySql;
 using mon_io_app.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

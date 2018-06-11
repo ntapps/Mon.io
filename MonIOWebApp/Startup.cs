@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using mon_io_app.DataLayer;
-using MySql.Data.EntityFrameworkCore.Extensions;
+using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
 
 namespace mon_io_app
@@ -25,7 +25,7 @@ namespace mon_io_app
 
             services.AddSingleton<IConfiguration>(Configuration);
 
-            services.AddDbContext<MonioContext>(options => options.UseMySQL(Configuration.GetSection("ConnectionStrings").GetSection("MonioDB").Value));
+            services.AddDbContext<MonioContext>(options => options.UseMySql(Configuration.GetSection("ConnectionStrings").GetSection("MonioDB").Value));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -19,9 +19,7 @@ namespace mon_io_app
             var builder = new DbContextOptionsBuilder<MonioContext>();
     
             var connectionString = configuration.GetConnectionString("MonioDB");
-    
-            builder.UseSqlServer(connectionString);
-    
+            builder.UseMySql(connectionString);
             return new MonioContext(builder.Options);
         }
     }
