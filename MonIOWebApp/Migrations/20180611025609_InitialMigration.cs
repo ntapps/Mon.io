@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace monioapp.Migrations
 {
@@ -14,9 +13,9 @@ namespace monioapp.Migrations
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    GoogleAccountID = table.Column<string>(nullable: true),
-                    UserName = table.Column<string>(nullable: true)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserName = table.Column<string>(nullable: true),
+                    GoogleAccountID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,10 +27,10 @@ namespace monioapp.Migrations
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Year = table.Column<int>(nullable: false),
                     Month = table.Column<int>(nullable: false),
-                    UserID = table.Column<long>(nullable: false),
-                    Year = table.Column<int>(nullable: false)
+                    UserID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,7 +48,7 @@ namespace monioapp.Migrations
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 45, nullable: false),
                     UserID = table.Column<long>(nullable: false)
                 },
@@ -69,11 +68,11 @@ namespace monioapp.Migrations
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BudgetID = table.Column<long>(nullable: false),
-                    IsTaxable = table.Column<bool>(nullable: false, defaultValue: true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 45, nullable: false),
-                    Value = table.Column<double>(nullable: false)
+                    Value = table.Column<double>(nullable: false),
+                    IsTaxable = table.Column<bool>(nullable: false, defaultValue: true),
+                    BudgetID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,24 +90,24 @@ namespace monioapp.Migrations
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
-                    SavingsCategoryFromID = table.Column<long>(nullable: false),
-                    SavingsCategoryToID = table.Column<long>(nullable: false),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     TransactionDate = table.Column<DateTime>(nullable: false),
-                    Value = table.Column<double>(nullable: false)
+                    Value = table.Column<double>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
+                    SavingsCategoryToID = table.Column<long>(nullable: false),
+                    SavingsCategoryFromID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SavingsCategory_BalanceTransfer", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_SavingsCategory_BalanceTransfer_SavingsCategory_Main_SavingsCategoryFromID",
+                        name: "FK_SavingsCategory_BalanceTransfer_SavingsCategory_Main_Savings~",
                         column: x => x.SavingsCategoryFromID,
                         principalTable: "SavingsCategory_Main",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SavingsCategory_BalanceTransfer_SavingsCategory_Main_SavingsCategoryToID",
+                        name: "FK_SavingsCategory_BalanceTransfer_SavingsCategory_Main_Saving~1",
                         column: x => x.SavingsCategoryToID,
                         principalTable: "SavingsCategory_Main",
                         principalColumn: "ID",
@@ -120,16 +119,16 @@ namespace monioapp.Migrations
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Year = table.Column<int>(nullable: false),
                     Month = table.Column<int>(nullable: false),
-                    SavingsCategory_MainID = table.Column<long>(nullable: false),
-                    Year = table.Column<int>(nullable: false)
+                    SavingsCategory_MainID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SavingsCategory_Child", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_SavingsCategory_Child_SavingsCategory_Main_SavingsCategory_MainID",
+                        name: "FK_SavingsCategory_Child_SavingsCategory_Main_SavingsCategory_M~",
                         column: x => x.SavingsCategory_MainID,
                         principalTable: "SavingsCategory_Main",
                         principalColumn: "ID",
@@ -141,26 +140,26 @@ namespace monioapp.Migrations
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     BudgetID = table.Column<long>(nullable: false),
-                    DueDate = table.Column<DateTime>(nullable: true),
-                    InitialValue = table.Column<double>(nullable: false),
                     Name = table.Column<string>(maxLength: 45, nullable: false),
-                    OverflowExpenseCategoryToID = table.Column<long>(nullable: true),
+                    InitialValue = table.Column<double>(nullable: false),
+                    Type = table.Column<bool>(nullable: false),
+                    DueDate = table.Column<DateTime>(nullable: true),
                     SavingsCategory_ChildID = table.Column<long>(nullable: false),
-                    Type = table.Column<bool>(nullable: false)
+                    OverflowExpenseCategoryToID = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Budget_ExpenseCategory", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Budget_ExpenseCategory_Budget_ExpenseCategory_OverflowExpenseCategoryToID",
+                        name: "FK_Budget_ExpenseCategory_Budget_ExpenseCategory_OverflowExpens~",
                         column: x => x.OverflowExpenseCategoryToID,
                         principalTable: "Budget_ExpenseCategory",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Budget_ExpenseCategory_SavingsCategory_Child_SavingsCategory_ChildID",
+                        name: "FK_Budget_ExpenseCategory_SavingsCategory_Child_SavingsCategory~",
                         column: x => x.SavingsCategory_ChildID,
                         principalTable: "SavingsCategory_Child",
                         principalColumn: "ID",
@@ -172,13 +171,13 @@ namespace monioapp.Migrations
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Budget_ExpenseCategoryID = table.Column<long>(nullable: false),
-                    Cost = table.Column<double>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Location = table.Column<string>(maxLength: 45, nullable: false),
                     Reason = table.Column<string>(maxLength: 45, nullable: true),
-                    TransactionDate = table.Column<DateTime>(nullable: false)
+                    Cost = table.Column<double>(nullable: false),
+                    TransactionDate = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
+                    Budget_ExpenseCategoryID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -196,11 +195,11 @@ namespace monioapp.Migrations
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Budget_ExpenseCategoryID = table.Column<long>(nullable: false),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Cost = table.Column<double>(nullable: false),
+                    TransactionDate = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
-                    TransactionDate = table.Column<DateTime>(nullable: false)
+                    Budget_ExpenseCategoryID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
