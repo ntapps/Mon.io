@@ -8,7 +8,7 @@ declare const gapi: any;
   styleUrls: ['./login-form.component.css']
 })
 export class GoogleSigninComponent implements AfterViewInit {
-
+/*
   private clientId:string = '476220412516-62ibusj2uuv9b14ar63st36ghmt7kq6h.apps.googleusercontent.com';
   
   private scope = [
@@ -49,9 +49,9 @@ export class GoogleSigninComponent implements AfterViewInit {
   constructor(private element: ElementRef, private authService: AuthenticationService) {
     console.log('ElementRef: ', this.element);
   }
-
+*/
   ngAfterViewInit() {
-    this.googleInit();
+    //this.googleInit();
   }
 
 }
