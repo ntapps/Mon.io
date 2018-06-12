@@ -4,6 +4,7 @@ import { MatInputModule, MatButtonModule, MatIconModule } from '@angular/materia
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { GoogleSigninComponent } from './login-form/login-form.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { LoginFormComponent } from './login-form/login-form.component';
     MatButtonModule,
     MatIconModule
   ],
-  declarations: [LoginFormComponent]
+  declarations: [LoginFormComponent, GoogleSigninComponent]
 })
 export class LoginModule { }

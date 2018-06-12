@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeViewComponent } from './home-view.component';
+import { MatCardModule } from '@angular/material';
+
 
 describe('HomeViewComponent', () => {
   let component: HomeViewComponent;
@@ -8,6 +10,7 @@ describe('HomeViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [MatCardModule],
       declarations: [ HomeViewComponent ]
     })
     .compileComponents();

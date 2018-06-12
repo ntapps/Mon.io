@@ -27,10 +27,12 @@ export class AuthenticationService {
 
   logOut(){
     this._isAuthenticated.next(false);
+    console.log("service set login to false");
   }
 
   logIn(){
     this._isAuthenticated.next(true);
+    console.log("service set login to true");
   }
 
   tryLogin(user:string, password:string) : string{
