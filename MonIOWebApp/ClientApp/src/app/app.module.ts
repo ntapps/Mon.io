@@ -8,10 +8,36 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { SharedDataModule } from './shared-data/shared-data.module';
+import {
+  GoogleApiModule, 
+  GoogleApiService, 
+  GoogleAuthService, 
+  NgGapiClientConfig, 
+  NG_GAPI_CONFIG,
+  GoogleApiConfig
+} from "ng-gapi";
+import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
+import { BottomNavButtonComponent } from './bottom-nav/bottom-nav-button/bottom-nav-button.component';
+
+
+let gapiClientConfig: NgGapiClientConfig = {
+  client_id: "372063809670-fvbs4n6op7eamkincjvd265b159aaq1c.apps.googleusercontent.com",
+  discoveryDocs: ["https://analyticsreporting.googleapis.com/$discovery/rest?version=v4"],
+  scope: [
+      "https://www.googleapis.com/auth/drive",
+      "https://www.googleapis.com/auth/drive.readonly",
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/drive",
+      "https://www.googleapis.com/auth/spreadsheets.readonly"
+  ].join(" ")
+};
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    BottomNavComponent,
+    BottomNavButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +49,11 @@ import { SharedDataModule } from './shared-data/shared-data.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    SharedDataModule.forRoot()
+    SharedDataModule.forRoot(),
+    GoogleApiModule.forRoot({
+      provide: NG_GAPI_CONFIG,
+      useValue: gapiClientConfig
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
