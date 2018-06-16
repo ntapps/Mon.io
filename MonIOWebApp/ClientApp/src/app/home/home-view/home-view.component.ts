@@ -5,7 +5,7 @@ import { HomeData } from 'src/app/models/HomeData';
 @Component({
   selector: 'app-home-view',
   templateUrl: './home-view.component.html',
-  styleUrls: ['./home-view.component.css']
+  styleUrls: ['./home-view.component.scss']
 })
 export class HomeViewComponent implements OnInit {
 

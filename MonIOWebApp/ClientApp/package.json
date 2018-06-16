@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
     "core-js": "^2.5.4",
+    "material-bottom-nav": "^1.0.6",
+    "ng-gapi": "0.0.51",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

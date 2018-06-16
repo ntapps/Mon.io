@@ -16,6 +16,8 @@ import {
   NG_GAPI_CONFIG,
   GoogleApiConfig
 } from "ng-gapi";
+import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
+import { BottomNavButtonComponent } from './bottom-nav/bottom-nav-button/bottom-nav-button.component';
 
 
 let gapiClientConfig: NgGapiClientConfig = {
@@ -33,7 +35,9 @@ let gapiClientConfig: NgGapiClientConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    BottomNavComponent,
+    BottomNavButtonComponent
   ],
   imports: [
     BrowserModule,
