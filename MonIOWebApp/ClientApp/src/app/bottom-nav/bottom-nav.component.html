@@ -1,0 +1,5 @@
+<mat-toolbar class="bottom-nav" color="primary">
+  <span class="bottom-nav__action" *ngFor="let buttonObject of buttonObjectList">
+    <bottom-nav-button class="bottom-nav-button" [index]="index" [buttonObj]="buttonObject" (click)="SelectThisIndex(buttonObject.index)"></bottom-nav-button>
+  </span>
+</mat-toolbar>
