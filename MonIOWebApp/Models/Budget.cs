@@ -13,5 +13,7 @@ namespace mon_io_app.Models
         public virtual User User { get; set; }
 
         public virtual List<Budget_Income> Budget_Incomes { get; set; }
+
+        public virtual List<Budget_ExpenseCategory> Budget_ExpenseCategories { get; set; }
     }
 }

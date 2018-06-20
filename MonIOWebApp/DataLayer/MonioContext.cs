@@ -69,6 +69,7 @@ namespace mon_io_app.DataLayer
             {
                 entity.HasKey(e => e.ID);
                 entity.Property(e => e.Name).IsRequired().HasMaxLength(45);
+                entity.Property(e => e.Type).IsRequired().HasMaxLength(25);
             });
             modelBuilder.Entity<Budget_ExpenseCategory>()
                 .HasOne(e => e.SavingsCategory_Child)
@@ -77,6 +78,9 @@ namespace mon_io_app.DataLayer
             modelBuilder.Entity<Budget_ExpenseCategory>()
                 .HasOne(e => e.OverflowExpenseCategoryTo)
                 .WithMany(f => f.OverflowExpenseCategoryFrom);
+            modelBuilder.Entity<Budget_ExpenseCategory>()
+                .HasOne(e => e.Budget)
+                .WithMany(f => f.Budget_ExpenseCategories);
 
             modelBuilder.Entity<Expense>(entity =>
             {
