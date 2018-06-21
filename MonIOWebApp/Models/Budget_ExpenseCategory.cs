@@ -27,5 +27,6 @@ namespace mon_io_app.Models
         public virtual List<Expense> Expenses { get; set; }
 
         public virtual List<Expense_Bill> Expense_Bills { get; set; }
+        
     }
 }

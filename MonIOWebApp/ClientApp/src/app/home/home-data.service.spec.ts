@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { HomeDataService } from './home-data.service';
-import { ApiDataService} from '../shared-data/api-data.service';
+import { MockApiDataService} from '../mock-services/mock-api-data.service';
 
 
 describe('HomeDataService', () => {
@@ -15,8 +15,8 @@ describe('HomeDataService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should get values from dataService', inject([HomeDataService, ApiDataService], 
-    (service: HomeDataService, apiService:ApiDataService) => {
+  it('should get values from dataService', inject([HomeDataService, MockApiDataService], 
+    (service: HomeDataService, apiService:MockApiDataService) => {
       apiService.loadHomeData(10, 11, 12);
       service.GetBudgets().subscribe( x=>
         expect(x).toBe(10)
