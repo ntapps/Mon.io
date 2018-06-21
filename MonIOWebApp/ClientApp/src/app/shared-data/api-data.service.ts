@@ -28,7 +28,6 @@ export class ApiDataService {
     homeData : HomeData;
   }
 
-
   loadHomeData(b:number, e:number, s:number){
     this.dataStore.homeData = new HomeData(b,e,s);
     this._homeData.next(Object.assign({}, this.dataStore).homeData);

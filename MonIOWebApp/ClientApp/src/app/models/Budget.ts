@@ -1,16 +1,25 @@
+import { BudgetIncome } from "src/app/models/BudgetIncome";
+import { BudgetExpense } from "src/app/models/BudgetExpense";
+
 //
 export class Budget {
-  public id: Number;
-  public year: Number;
-  public month: Number;
-  public expenseName: string;
-  public expenseValue: number;
+  public id:string;
+        
+  public sumIncome:number;
 
-  constructor(id:Number, year:Number, month:Number, expenseName:string, expenseValue:number){
-    this.id = id;
-    this.year = year;
-    this.month = month;
-    this.expenseName = expenseName;
-    this.expenseValue = expenseValue;
-  };
+  public sumPreTaxExpense:number;
+
+  public sumTaxExpense:number;
+
+  public sumExpense:number;
+
+  public monthlyIncome: [BudgetIncome];
+
+  public preTaxExpenses: [BudgetExpense];
+
+  public taxExpenses: [BudgetExpense];
+
+  public regularExpenses: [BudgetExpense];
+
+  public spendingCategory: BudgetExpense;
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BudgetDataService } from 'src/app/budget/budget-data.service';
+import { Budget } from 'src/app/models/Budget';
 
 @Component({
   selector: 'app-budget-view',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BudgetViewComponent implements OnInit {
 
-  constructor() { }
+  private budgetData: Budget;
+  constructor(private budgetDataService : BudgetDataService) {
+    this.budgetData = null;
+   }
 
   ngOnInit() {
+    this.budgetDataService.getAllBudgetData().subscribe(data=>{
+      console.log("DING DONG");
+      this.budgetData = data;
+    });
   }
 
 }
