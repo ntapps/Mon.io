@@ -71,5 +71,25 @@ namespace mon_io_app.DataLayer
 
             return retval;
         }
+
+        public BudgetExpenseDetailedDTO GetDetailedBudgetExpenseByID(long id)
+        {
+            return _context.Budget_ExpenseCategory
+                        .Include("Budget")
+                        .Include("SavingsCategory_Child")
+                        .Include("OverflowExpenseCategoryTo")
+                        .Where(x => x.ID == id)
+                        .Select(x => new BudgetExpenseDetailedDTO {
+                            ID = x.ID,
+                            Name = x.Name,
+                            InitialValue = x.InitialValue,
+                            Type = x.Type,
+                            DueDate = x.DueDate,
+                            BudgetID = x.Budget.ID,
+                            SavingsCategoryID = x.SavingsCategory_Child.ID,
+                            OverflowExpenseCategoryID = x.OverflowExpenseCategoryTo.ID
+                        })
+                        .FirstOrDefault();
+        } 
     }
 }
