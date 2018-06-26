@@ -28,5 +28,10 @@ namespace mon_io_app.Controllers
             return _budgetDataService.GetCurrentBudgetOverview(userid);
         }
 
+        [HttpGet("[action]")]
+        public BudgetExpenseDetailedDTO GetDetailedBudgetExpenseCategory(long expensecategoryid)
+        {
+            return _budgetDataService.GetDetailedBudgetExpenseByID(expensecategoryid);
+        }
     }
 }
