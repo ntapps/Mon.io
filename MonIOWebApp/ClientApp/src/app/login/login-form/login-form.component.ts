@@ -8,6 +8,7 @@ declare const gapi: any;
   styleUrls: ['./login-form.component.css']
 })
 export class GoogleSigninComponent implements AfterViewInit {
+  //commenting out until James brings his code changes due to merge conflict issues
 /*
   private clientId:string = '476220412516-62ibusj2uuv9b14ar63st36ghmt7kq6h.apps.googleusercontent.com';
   
