@@ -13,13 +13,20 @@ export class Budget {
 
   public sumExpense:number;
 
-  public monthlyIncome: [BudgetIncome];
+  public monthlyIncome: Array<BudgetIncome>;
 
-  public preTaxExpenses: [BudgetExpense];
+  public preTaxExpenses: Array<BudgetExpense>;
 
-  public taxExpenses: [BudgetExpense];
+  public taxExpenses: Array<BudgetExpense>;
 
-  public regularExpenses: [BudgetExpense];
+  public regularExpenses: Array<BudgetExpense>;
 
-  public spendingCategory: BudgetExpense;
+  public spendingCategory: Array<BudgetExpense>;
+}
+
+export enum BUDGETEXPENSEENUMS {
+  PreTaxExpenses = "PreTaxExpenses",
+  TaxExpenses = "TaxExpenses",
+  RegularExpenses = "RegularExpenses",
+  SpendingCategory = "SpendingCategory"
 }

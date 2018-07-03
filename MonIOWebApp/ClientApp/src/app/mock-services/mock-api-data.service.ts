@@ -23,7 +23,7 @@ export class MockApiDataService {
     //(when we get an API)
     //test purposes only. Remove when service is created.
     setTimeout(() => {this.loadHomeData(100, 100, 100)}, 2000);
-    setTimeout(() => {this.loadMockBudgetData()}, 2000);
+    setTimeout(() => {this.loadBudgetData()}, 2000);
   }
 
   //instantiate our observables here
@@ -41,12 +41,28 @@ export class MockApiDataService {
     this._homeData.next(Object.assign({}, this.dataStore).homeData);
   }
 
-  loadMockBudgetData(){
-    this.dataStore.budget = MockBudget;
+  loadBudgetData(){
+    if(this.dataStore.budget == null || this.dataStore.budget == undefined){
+      this.dataStore.budget = MockBudget;
+    }
+    this.emitNewBudgetData();
+  }
+
+  setBudgetData(newBudget : Budget){
+    this.dataStore.budget = newBudget;
+    
+  }
+
+  emitNewBudgetData(){
     this._budget.next(Object.assign({}, this.dataStore).budget);
   }
+
   get homeData() {
     return this._homeData.asObservable();
+  }
+
+  setHomeData(newHomeData: HomeData){
+    this.dataStore.homeData = newHomeData;
   }
 
   get budgetViewData(){
